@@ -111,7 +111,7 @@ docker-compose run web bundle exec rails g model board name:string title:string 
       create      test/fixtures/boards.yml
 ```
 
- 
+
 ## マイグレーションの実行
 
 DBが作成される
