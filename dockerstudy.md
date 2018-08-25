@@ -57,6 +57,10 @@ docker-compose down
 docker-compose ps
 ```
 
+- 起動中のコンテナの名前などを確認できる
+
+
+
 
 ## コンテナが起動しないとき
 server.pidファイルが原因の可能性があるので、削除してみる。
@@ -112,7 +116,7 @@ docker-compose run web bundle exec rails g model board name:string title:string 
 ```
 
 
-## マイグレーションの実行
+## マイグレ−ション
 
 DBが作成される
 
@@ -125,4 +129,52 @@ docker-compose run web bundle exec rails db:migrate
 ```
 rails db:rollback
 ```
+
+# Gemfileの書き方
+
+## group
+- 実行環境に応じて使い分ける。
+- 開発時に必要なgemは group :developmnet の中に書く
+
+
+
+
+
+
+
+# デバッグの方法
+## pry-byebugでデバッグ
+### gemを入れる
+
+```
+gem 'pry-byebug'
+```
+- 任意の箇所で処理を止めてステップ実行が可能になる
+
+### ステップ実行したい箇所ににコード挿入
+
+```
+binding.pry
+```
+
+- 処理を走らせると、挿入した箇所で処理が止まり、pryが起動する。
+- 受け取った変数名の中とかが見れる
+
+
+### この状態で使えるコマンド
+step 次の行かメソッド内に入る
+next 次の行を実行
+finish 現在のフレームが終わるまで実行
+continue pryセッションから抜ける
+
+
+### Dockerの場合はコンテナの標準出力に接続して利用
+コンテナで起動しているプロセスの標準入出力(STDIN/STDOUT)に接続(attach)する。
+
+```
+docker attach {コンテナ名}
+```
+
+- ctrl+p,qの順で押すと解除できる
+
 
