@@ -130,15 +130,23 @@ docker-compose run web bundle exec rails db:migrate
 rails db:rollback
 ```
 
-# Gemfileの書き方
+## Gemfileの書き方
 
-## group
+### group
 - 実行環境に応じて使い分ける。
 - 開発時に必要なgemは group :developmnet の中に書く
 
 
+## ストロングパラメーター
+意図しないPOSTデータなどを保存しないように、許可するデータをあらかじめ指定してフィルターをかけておく
 
+```ruby
+   private
 
+   def board_params
+     params.require(:board).permit(:name, :title, :body)
+   end
+```
 
 
 
