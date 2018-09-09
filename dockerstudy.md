@@ -103,6 +103,15 @@ docker-compose run web bundle exec rails g model board name:string title:string 
 - `board`: 作成するモデル名。boardモデルの作成によりboardsテーブルを作成するマイグレーションファイルが作成される
 - `name:string title:string body:text`: boardsテーブルに作成するカラム:カラムの型
 
+### アソシエーションを加えたい場合
+
+```
+docker-compose exec web bundle exec rails g model comment board:references name:string comment:text
+```
+
+- Commentモデル生成のコマンド
+- `board:references` の部分でBoardモデルと紐付けるためのboard_idカラムが生成される
+
 
 ### 実行結果
 
@@ -129,6 +138,16 @@ docker-compose run web bundle exec rails db:migrate
 ```
 rails db:rollback
 ```
+
+## コントローラーの作成
+
+```
+docker-compose exec web bundle exec rails g controller comments create destroy --skip-template-engine
+```
+
+- `rails g controller {コントローラー名} {アクション名(複数)}` で生成
+- `--skip-template-engine` はviewファイルの生成をスキップするもの
+
 
 ## Gemfileの書き方
 
@@ -184,5 +203,7 @@ docker attach {コンテナ名}
 ```
 
 - ctrl+p,qの順で押すと解除できる
+
+
 
 
