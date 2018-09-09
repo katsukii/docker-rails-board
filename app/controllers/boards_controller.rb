@@ -5,7 +5,7 @@ class BoardsController < ApplicationController
 	end
 
   def new
-    @board = Board.new(flash[:page])
+    @board = Board.new(flash[:board])
   end
 
   def create
