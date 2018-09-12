@@ -10,9 +10,6 @@
 <% end %>
 <%= render @board %>
 
-div#id
-div.<class></class>
-
 <div class="p-comment__list">
   <div class="p-comment_listTitle">コメント</div>
   <%= render @board.comments %>
@@ -23,4 +20,4 @@ div.<class></class>
 
 
 
-<%= render partial: 'comment_form', locals: { comment: @comment } %>
+<%= render partial: 'comments/form', locals: { comment: @comment } %>
