@@ -7,12 +7,15 @@ class CommentsController < ApplicationController
     else
       redirect_to :back, flash: {
         comment: comment,
-        error_messages: comment.errors.full_mesages
+        error_messages: comment.errors.full_messages
       }
     end
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    comment.delete
+    redirect_to comment.board, flash: { notice: 'コメントが削除されました' }
   end
 
   def comment_params
